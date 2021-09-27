@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * 异常处理配置
  * 目前ETL-boot 重试使用固定模式 ，后续会引进Spring-retry框架进行升级
+ * @author xuben
  */
 @Data
 @Configuration

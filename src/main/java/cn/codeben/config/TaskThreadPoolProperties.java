@@ -2,9 +2,7 @@ package cn.codeben.config;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
@@ -14,6 +12,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * 任务线程配置
+ * @author xuben
  */
 @Data
 @Slf4j
@@ -23,11 +22,11 @@ public class TaskThreadPoolProperties {
     /**
      * sourceTask线程池 核心线程容量
      */
-    private int sourceTaskThreadPoolCoreSize = 5;
+    private int sourceTaskThreadPoolCoreSize = 2;
     /**
      * sourceTask线程池 最大线程容量
      */
-    private int sourceTaskThreadPoolMaxSize = 10;
+    private int sourceTaskThreadPoolMaxSize = 5;
     /**
      * sourceTask队列容量
      */
@@ -37,11 +36,11 @@ public class TaskThreadPoolProperties {
     /**
      * flatMapTask线程池 核心线程容量
      */
-    private int flatMapTaskThreadPoolCoreSize = 5;
+    private int flatMapTaskThreadPoolCoreSize = 2;
     /**
      * flatMapTask线程池 最大线程容量
      */
-    private int flatMapTaskThreadPoolMaxSize = 10;
+    private int flatMapTaskThreadPoolMaxSize = 5;
     /**
      * flatMapTask阻塞队列容量
      */
@@ -51,11 +50,11 @@ public class TaskThreadPoolProperties {
     /**
      * reduceTask线程池 核心线程容量
      */
-    private int reduceTaskThreadPoolCoreSize = 5;
+    private int reduceTaskThreadPoolCoreSize = 2;
     /**
      * SourceTask线程池 最大线程容量
      */
-    private int reduceTaskThreadPoolMaxSize = 10;
+    private int reduceTaskThreadPoolMaxSize = 5;
     /**
      * SourceTask队列容量
      */
@@ -65,11 +64,11 @@ public class TaskThreadPoolProperties {
     /**
      * sinkTask线程池 核心线程容量
      */
-    private int sinkTaskThreadPoolCoreSize = 5;
+    private int sinkTaskThreadPoolCoreSize = 2;
     /**
      * sinkTask线程池 最大线程容量
      */
-    private int sinkTaskThreadPoolMaxSize = 10;
+    private int sinkTaskThreadPoolMaxSize = 5;
     /**
      * sinkTask队列容量
      */
@@ -97,7 +96,7 @@ public class TaskThreadPoolProperties {
     /**
      * exception线程池 最大线程容量
      */
-    private int exceptionTaskThreadPoolMaxSize = 3;
+    private int exceptionTaskThreadPoolMaxSize = 2;
     /**
      * exception队列容量
      */
@@ -176,7 +175,7 @@ public class TaskThreadPoolProperties {
         }
         taskExecutor.setThreadNamePrefix(String.format("%s-Thread-",taskName));
         taskExecutor.initialize();
-        log.info("[{}] Thread Poll initial complete : coreSize:[{}],maxSize:[{}],queueSize:[{}]",taskName,core,max,queue);
+        printInitialLog(taskName,core,max,queue);
         return taskExecutor;
     }
 

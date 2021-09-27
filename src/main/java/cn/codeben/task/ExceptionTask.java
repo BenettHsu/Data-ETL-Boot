@@ -1,5 +1,6 @@
 package cn.codeben.task;
 
+import cn.codeben.enums.LogLevelEnum;
 import cn.codeben.pojo.dto.ExceptionTaskDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
@@ -7,6 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.Resource;
 import java.util.concurrent.Executor;
 
+/**
+ * @author xuben
+ */
 @Configuration
 @Slf4j
 public class ExceptionTask extends AbstractTask {
@@ -19,7 +23,7 @@ public class ExceptionTask extends AbstractTask {
      */
     public void exceptionTask(ExceptionTaskDto dto){
         executor.execute(()->{
-            Timer timer = new Timer(TASK_NAME).start();
+            Timer timer = new Timer(TASK_NAME).start().setLogLevel(LogLevelEnum.ERROR);
             handle(TASK_NAME,dto);
             timer.end(dto);
         });

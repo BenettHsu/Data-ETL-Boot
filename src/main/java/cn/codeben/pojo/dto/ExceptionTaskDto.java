@@ -3,6 +3,9 @@ package cn.codeben.pojo.dto;
 import cn.codeben.enums.ExceptionTaskEnum;
 import lombok.Data;
 
+/**
+ * @author xuben
+ */
 @Data
 public class ExceptionTaskDto extends CommonTaskDto{
     ExceptionTaskEnum exceptionTaskEnum;

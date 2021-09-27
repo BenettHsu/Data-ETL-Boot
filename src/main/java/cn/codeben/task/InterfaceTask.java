@@ -1,6 +1,9 @@
 package cn.codeben.task;
 
 
+/**
+ * @author xuben
+ */
 public interface InterfaceTask {
 
     long MILLI_SECOND = 1L;

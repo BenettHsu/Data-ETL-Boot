@@ -1,11 +1,8 @@
 package cn.codeben.enums;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 /**
  * 异常枚举类型
+ * @author xuben
  */
 public enum ExceptionTaskEnum {
     DATA_EXTRACT_EXCEPTION("dataExtractException","数据转换异常");
